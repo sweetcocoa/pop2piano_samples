@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <script src="plugins/wavesurfer.min.js"></script>
+    <script src="plugins/wavesurfer-regions.js"></script>
+    <script src="plugins/wavesurfer.timeline.min.js"></script>
+    <script src="plugins/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>Pop2Piano</title>
+</head>
+
+<body>
+    <center>
+        <h1>Pop2Piano Sample Page</h1>
+        <hr>
+        <h2>Pop2Piano : Pop Audio-Based Automatic Piano Arrangement</h2>
+        <p style="width: 60%">
+            Author(s) : Anonymous for Review
+        </p>
+        <p>
+            Before listening : We highly recommend that you listen to the samples in stereo audio.<br>
+            All stereo audio has the piano arrangement on one side and the original song on the other.
+        </p>
+        <a href="https://Anonymous_for_Review" class="fab fa-github"><span class="label">Paper</span></a>
+        <a href="https://bit.ly/pop2piano-colab-review" class="fab fa-google-drive"><span class="label">Colab</span></a>
+        <hr>
+        <div id='song_choose'>
+            <select id="s_pop">
+                <option value="BornThisWay">BornThisWay</option>
+                <option value="FkinPerfect">FkinPerfect</option>
+                <option value="LoveAlways">LoveAlways</option>
+                <option value="LoveDive">LoveDive</option>
+
+            </select>
+            <select id="s_arranger">
+                <option value="arranger_01">arranger_01</option>
+                <option value="arranger_02">arranger_02</option>
+                <option value="arranger_03">arranger_03</option>
+                <option value="arranger_04">arranger_04</option>
+                <option value="arranger_05">arranger_05</option>
+                <option value="arranger_06">arranger_06</option>
+                <option value="arranger_07">arranger_07</option>
+                <option value="arranger_08">arranger_08</option>
+                <option value="arranger_09">arranger_09</option>
+                <option value="arranger_10">arranger_10</option>
+                <option value="arranger_11">arranger_11</option>
+                <option value="arranger_12">arranger_12</option>
+                <option value="arranger_13">arranger_13</option>
+                <option value="arranger_14">arranger_14</option>
+                <option value="arranger_15">arranger_15</option>
+                <option value="arranger_16">arranger_16</option>
+                <option value="arranger_17">arranger_17</option>
+                <option value="arranger_18">arranger_18</option>
+                <option value="arranger_19">arranger_19</option>
+                <option value="arranger_20">arranger_20</option>
+            </select>
+            <button onclick="togglePlay()">Play/Pause</button><br>
+            <p style="color: red">(It may take time to load the audio)</p>
+        </div>
+    </center>
+    <div id='button_block'>
+        <div id='right_region'>
+            <div id="waveform-timeline"></div>
+            <div id="waveform"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: '#267CB9',
+            progressColor: '#00008B',
+            barHeight: 5,
+        });
+        //create wave form
+        load_song('arranger_01')
+
+
+        $('#s_pop').on('change', function () {
+            load_song($('#s_arranger').val())
+        })
+
+        $('#s_arranger').on('change', function () {
+            load_song(this.value)
+        })
+
+        function togglePlay() {
+            wavesurfer.params.barHeight = 10;
+            wavesurfer.playPause()
+        }
+
+        function load_song(arranger) {
+            name = arranger
+            wavesurfer.load('assets/' + $("#s_pop").val() + "/" + arranger + '/play.mp3');
+            wavesurfer.on('ready', function () {
+                wavesurfer.params.barHeight = 10;
+                if (arranger == name) {
+                    var timeline = Object.create(WaveSurfer.Timeline);
+                    timeline.init({
+                        wavesurfer: wavesurfer,
+                        container: '#waveform-timeline'
+                    });
+                    show_result($("#s_pop").val(), arranger)
+                }
+            });
+        }
+
+        function show_result(pop, arranger) {
+            wavesurfer.clearRegions()
+            $.getJSON('assets/' + pop + '/' + arranger + '/' + 'notes.json', function (data) {
+                for (j in data) {
+                    wavesurfer.addRegion({ start: data[j]['start'], end: data[j]['end'], top: (128 - data[j]['pitch']) * 5, color: 'hsla(0, 0%, 0%, 1.0)' });
+                }
+            });
+        }
+
+        $("wave").first().css("height", 550);
+
+    </script>
+
+</body>
+
+</html>

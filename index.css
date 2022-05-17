@@ -1,0 +1,46 @@
+body {
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+
+a:hover {
+	border-bottom-color: transparent;
+	color: #267CB9 !important;
+	text-decoration: none;
+}
+
+#button_block {
+	width: 90%;
+}
+
+#right_region {
+	width: 90%;
+	float: right;
+}
+
+.left_region {
+	width: 90%;
+	display: inline-block;
+	/* margin-top: 210px; */
+}
+
+.left_region p {
+	text-align: right;
+	font-size: 20px;
+	-webkit-margin-before: 0em;
+	-webkit-margin-after: 0em;
+	padding-bottom: 12px;
+	padding-top: 5px;
+}
+
+.wavesurfer-region {
+	height: 5px !important;
+}
+
+#s_song,
+#s_model {
+	display: inline-block;
+}
+
+#waveform-timeline {
+	padding-top: 0px;
+}
