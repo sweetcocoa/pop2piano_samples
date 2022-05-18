@@ -29,36 +29,50 @@
         <a href="https://bit.ly/pop2piano-colab-review" class="fab fa-google-drive"><span class="label">Colab</span></a>
         <hr>
         <div id='song_choose'>
-            <select id="s_pop">
-                <option value="BornThisWay">BornThisWay</option>
-                <option value="FkinPerfect">FkinPerfect</option>
-                <option value="LoveAlways">LoveAlways</option>
-                <option value="LoveDive">LoveDive</option>
+            <table border="1" , width=50%>
+                <th bgcolor="#267CB9" style="color: white;">Song</th>
+                <th bgcolor="#267CB9" style="color: white;">Arr. Style</th>
+                <tr align="center">
+                    <td>
+                        <select id="s_pop">
+                            <option value="BornThisWay">BornThisWay</option>
+                            <option value="FkinPerfect">FkinPerfect</option>
+                            <option value="LoveAlways">LoveAlways</option>
+                            <option value="LoveDive">LoveDive</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="s_arranger">
+                            <option value="arranger_01">arranger_01</option>
+                            <option value="arranger_02">arranger_02</option>
+                            <option value="arranger_03">arranger_03</option>
+                            <option value="arranger_04">arranger_04</option>
+                            <option value="arranger_05">arranger_05</option>
+                            <option value="arranger_06">arranger_06</option>
+                            <option value="arranger_07">arranger_07</option>
+                            <option value="arranger_08">arranger_08</option>
+                            <option value="arranger_09">arranger_09</option>
+                            <option value="arranger_10">arranger_10</option>
+                            <option value="arranger_11">arranger_11</option>
+                            <option value="arranger_12">arranger_12</option>
+                            <option value="arranger_13">arranger_13</option>
+                            <option value="arranger_14">arranger_14</option>
+                            <option value="arranger_15">arranger_15</option>
+                            <option value="arranger_16">arranger_16</option>
+                            <option value="arranger_17">arranger_17</option>
+                            <option value="arranger_18">arranger_18</option>
+                            <option value="arranger_19">arranger_19</option>
+                            <option value="arranger_20">arranger_20</option>
+                        </select>
+                    </td>
 
-            </select>
-            <select id="s_arranger">
-                <option value="arranger_01">arranger_01</option>
-                <option value="arranger_02">arranger_02</option>
-                <option value="arranger_03">arranger_03</option>
-                <option value="arranger_04">arranger_04</option>
-                <option value="arranger_05">arranger_05</option>
-                <option value="arranger_06">arranger_06</option>
-                <option value="arranger_07">arranger_07</option>
-                <option value="arranger_08">arranger_08</option>
-                <option value="arranger_09">arranger_09</option>
-                <option value="arranger_10">arranger_10</option>
-                <option value="arranger_11">arranger_11</option>
-                <option value="arranger_12">arranger_12</option>
-                <option value="arranger_13">arranger_13</option>
-                <option value="arranger_14">arranger_14</option>
-                <option value="arranger_15">arranger_15</option>
-                <option value="arranger_16">arranger_16</option>
-                <option value="arranger_17">arranger_17</option>
-                <option value="arranger_18">arranger_18</option>
-                <option value="arranger_19">arranger_19</option>
-                <option value="arranger_20">arranger_20</option>
-            </select>
-            <button onclick="togglePlay()">Play/Pause</button><br>
+                </tr>
+
+            </table>
+
+            <p>
+                <i class="fa fa-play" aria-hidden="true"></i><button onclick="togglePlay()">Play/Pause</button>
+            </p>
             <p style="color: red">(It may take time to load the audio)</p>
         </div>
     </center>
