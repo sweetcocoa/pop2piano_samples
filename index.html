@@ -76,6 +76,9 @@
             <p>
                 <i class="fa fa-play" aria-hidden="true"></i><button onclick="togglePlay()">Play/Pause</button>
             </p>
+            <p>
+                L/R Relative Volume : <input id="panner-input" type="range" min="-20" max="0" value="-10" />
+            </p>
             <p style="color: red">(It may take time to load the audio)</p>
         </div>
     </center>
@@ -93,6 +96,31 @@
             progressColor: '#00008B',
             barHeight: 5,
         });
+
+        (function () {
+            wavesurfer.merger = wavesurfer.backend.ac.createChannelMerger(2);
+            wavesurfer.splitter = wavesurfer.backend.ac.createChannelSplitter(2);
+            wavesurfer.leftGain = wavesurfer.backend.ac.createGain();
+            wavesurfer.rightGain = wavesurfer.backend.ac.createGain();
+            wavesurfer.backend.setFilters([wavesurfer.splitter, wavesurfer.merger]);
+
+
+            let onChange = function () {
+                let xFloat = (parseInt(slider.value) / 20);
+                wavesurfer.splitter.connect(wavesurfer.leftGain, 0);
+                wavesurfer.splitter.connect(wavesurfer.rightGain, 1);
+                wavesurfer.leftGain.gain.value = xFloat;
+                wavesurfer.rightGain.gain.value = -xFloat;
+                wavesurfer.leftGain.connect(wavesurfer.merger, 0, 0);
+                wavesurfer.rightGain.connect(wavesurfer.merger, 0, 1);
+            };
+            let slider = document.querySelector('#panner-input');
+            slider.addEventListener('input', onChange);
+            slider.addEventListener('change', onChange);
+            onChange();
+        })();
+
+
         //create wave form
         load_song('arranger_01')
 
