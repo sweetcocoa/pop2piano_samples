@@ -29,9 +29,9 @@
             <a href="https://bit.ly/pop2piano-colab" class="fab fa-google-drive"><span class="label">Colab</span></a>
             <h2>
                 <hr>
-                <a href="index.html">> Generation Sample</a>
+                <a href="index.html">Generation Sample</a>
                 <hr>
-                <a href="dataset.html">Dataset Sample</a>
+                <a href="dataset.html">> Dataset Sample</a>
                 <hr>
                 <a href="fig3.html">(Fig. 3) on the Paper</a>
                 <hr>
@@ -40,46 +40,39 @@
                 <hr>
             </h2>
 
-            This page is for showing generated samples of Pop2Piano.<br>
-            You can change the song and the style of the piano cover by selecting items from the table below.
+            This page is for showing examples of PSP dataset and its raw/preprocessed versions.<br>
+            All song samples on this page are randomly sampled without any curations.<br>
+            <br>
+            {Pop, Piano Cover} paired dataset should be preprocessed including synchronization, and note
+            quantization.<br>
+            Because the web-crawled data is sometimes misaligned and human-made piano covers do not follow the original
+            song's progression perfectly.<br>
+            <br>
+            You can listen to 10 raw samples of PSP below, and you may easily catch what these mean.
+
             <div id='song_choose'>
                 <table border="1" , width=50%>
                     <th bgcolor="#267CB9" style="color: white;">Song</th>
-                    <th bgcolor="#267CB9" style="color: white;">Arr. Style</th>
+                    <th bgcolor="#267CB9" style="color: white;">Is preprocessed</th>
                     <tr align="center">
                         <td>
                             <select id="s_pop">
-                                <option value="Sk8erBoi">Sk8erBoi</option>
-                                <option value="BadRomance">BadRomance</option>
-                                <option value="BornThisWay">BornThisWay</option>
-                                <option value="FkinPerfect">FkinPerfect</option>
-                                <option value="LoveAlways">LoveAlways</option>
-                                <option value="LoveDive">LoveDive</option>
+                                <option value="wqF8UeNCi6I">psp_1</option>
+                                <option value="vBu179-5WHc">psp_2</option>
+                                <option value="QWJRLEDde6Q">psp_3</option>
+                                <option value="obmbuEjTRWE">psp_4</option>
+                                <option value="llYG9PWOSnU">psp_5</option>
+                                <option value="jgmgx-Yn54c">psp_6</option>
+                                <option value="G6A3DT_wwxM">psp_7</option>
+                                <option value="fD0iWA78Hcw">psp_8</option>
+                                <option value="D7fqsS89gkw">psp_9</option>
+                                <option value="6hgkkngtKuk">psp_10</option>
                             </select>
                         </td>
                         <td>
                             <select id="s_arranger">
-                                <option value="arranger_00">arranger_00</option>
-                                <option value="arranger_01">arranger_01</option>
-                                <option value="arranger_02">arranger_02</option>
-                                <option value="arranger_03">arranger_03</option>
-                                <option value="arranger_04">arranger_04</option>
-                                <option value="arranger_05">arranger_05</option>
-                                <option value="arranger_06">arranger_06</option>
-                                <option value="arranger_07">arranger_07</option>
-                                <option value="arranger_08">arranger_08</option>
-                                <option value="arranger_09">arranger_09</option>
-                                <option value="arranger_10">arranger_10</option>
-                                <option value="arranger_11">arranger_11</option>
-                                <option value="arranger_12">arranger_12</option>
-                                <option value="arranger_13">arranger_13</option>
-                                <option value="arranger_14">arranger_14</option>
-                                <option value="arranger_15">arranger_15</option>
-                                <option value="arranger_16">arranger_16</option>
-                                <option value="arranger_17">arranger_17</option>
-                                <option value="arranger_18">arranger_18</option>
-                                <option value="arranger_19">arranger_19</option>
-                                <option value="arranger_20">arranger_20</option>
+                                <option value="raw">Raw</option>
+                                <option value="preprocessed">Preprocessed</option>
                             </select>
                         </td>
 
@@ -136,7 +129,7 @@
 
 
         //create wave form
-        load_song('arranger_00')
+        load_song('raw')
 
 
         $('#s_pop').on('change', function () {
@@ -154,7 +147,7 @@
 
         function load_song(arranger) {
             name = arranger
-            wavesurfer.load('assets/' + $("#s_pop").val() + "/" + arranger + '/play.mp3');
+            wavesurfer.load('assets/dataset/' + $("#s_pop").val() + "/" + arranger + '/play.mp3');
             wavesurfer.on('ready', function () {
                 wavesurfer.params.barHeight = 10;
                 if (arranger == name) {
@@ -170,7 +163,7 @@
 
         function show_result(pop, arranger) {
             wavesurfer.clearRegions()
-            $.getJSON('assets/' + pop + '/' + arranger + '/' + 'notes.json', function (data) {
+            $.getJSON('assets/dataset/' + pop + '/' + arranger + '/' + 'notes.json', function (data) {
                 for (j in data) {
                     wavesurfer.addRegion({ start: data[j]['start'], end: data[j]['end'], top: (128 - data[j]['pitch']) * 5, color: 'hsla(0, 0%, 0%, 1.0)' });
                 }
