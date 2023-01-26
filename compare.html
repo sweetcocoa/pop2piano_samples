@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+        integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <script src="plugins/wavesurfer.min.js"></script>
+    <script src="plugins/wavesurfer-regions.js"></script>
+    <script src="plugins/wavesurfer.timeline.min.js"></script>
+    <script src="plugins/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>Pop2Piano</title>
+</head>
+
+<body>
+    <center>
+        <h1>Pop2Piano : Pop Audio-Based Piano Cover Generation</h2>
+            <p style="width: 100%">
+                <a href="mailto:jongho.choi@rebellions.ai">Jongho Choi</a>, <a href="mailto:kglee@snu.ac.kr">Kyogu
+                    Lee</a>
+            </p>
+            <p>
+                Before listening : We highly recommend that you listen to the samples in stereo audio.<br>
+                All stereo audio has the piano cover on one side and the original song on the other.
+            </p>
+            <strong>
+                <a href="https://arxiv.org/abs/2211.00895" class="far fa-file">Paper</span></a>
+                <a href="https://github.com/sweetcocoa/pop2piano" class="fab fa-github">Code</a>
+                <a href="https://bit.ly/pop2piano-colab" class="fab fa-google-drive">Colab</a>
+                <a href="https://bit.ly/pop2piano-huggingface" class="far fa-smile-beam">HuggingFace</a>
+            </strong>
+            <h2>
+                <hr>
+                <a href="index.html">Generation Sample</a>
+                <hr>
+                <a href="dataset.html">> Dataset Sample</a>
+                <hr>
+                <a href="fig_on_paper.html">(Fig 4.) on the Paper</a>
+                <hr>
+                <a href="https://www.youtube.com/watch?v=-SuI6snsbc4" class="fab fa-youtube"><span class='label'>Demo
+                        Video</span></a>
+                <hr>
+            </h2>
+            <h4>
+                <hr>
+                <a href="compare.html">Qualitative comparison</a>
+                <hr>
+            </h4>
+
+            This page was created for a qualitative comparison with <a
+                href="https://staff.aist.go.jp/m.goto/PAPER/ISMIR2017ariga.pdf">Song2Guitar</a>, the paper used as a
+            comparative study
+            in the paper. <p>
+                Cover generation studies, including Song2Guitar, have not made their systems available for
+                use, so it is not possible to compare the covers generated for the various songs in each study.
+            <p>
+                However, in Song2Guitar's demo video, we were able to get the original song and the generated guitar
+                cover, so we could use it as input to Pop2Piano to generate the piano cover. Below is the result.
+            <p>
+
+            <div id='song_choose'>
+                <table border="1" , width=50%>
+                    <th bgcolor="#267CB9" style="color: white;">Song2Guitar</th>
+                    <th bgcolor="#267CB9" style="color: white;">Pop2Piano</th>
+                    <tr align="center">
+                        <td>
+                            <audio controls src="assets/Compare/Song2Guitar/output.mp3">
+                                <a href="assets/Compare/Song2Guitar/output.mp3">
+                                    Download audio
+                                </a>
+                            </audio>
+                            <br>
+                            <a href="https://www.youtube.com/watch?v=fN4-ibh7ZDI">[Source Video]</a>
+                        </td>
+                        <td>
+                            <audio controls src="assets/Compare/Pop2Piano/output.mp3">
+                                <a href="assets/Compare/Pop2Piano/output.mp3">
+                                    Download audio
+                                </a>
+                            </audio>
+                            <br> [Generated Piano Cover on the same song using Pop2Piano]
+                            <br> (Composer Token=4)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+    </center>
+
+</body>
+
+</html>
